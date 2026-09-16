@@ -125,8 +125,33 @@ def check_links(root):
             if target.is_dir(): target=target/'index.html'
             if not target.is_file(): raise Blocked('BROKEN_SITE_LINK')
 
+def fetch_live(name):
+    # Fixed public origin, never a user-controlled URL or a private repository.
+    url='https://oleksiimamchuralx.github.io/portfolio-site/'+name
+    with urlopen(Request(url,headers={'Cache-Control':'no-cache','User-Agent':'portfolio-reconciliation'}),timeout=15) as response:
+        data=response.read(1_000_001)
+    if len(data)>1_000_000: raise ValueError('LIVE_SIZE_LIMIT')
+    return data
+
+def needs_deployment(destination, receipt, fetcher=fetch_live):
+    """Skip only if provenance AND every served artifact already match the build."""
+    if not re.fullmatch('[0-9a-f]{40}',receipt['site_commit']):
+        return True
+    try:
+        live=json.loads(fetcher('receipt.json'))
+        if set(live)!=set(receipt): return True
+        if {k:v for k,v in live.items() if k!='built_at'}!={k:v for k,v in receipt.items() if k!='built_at'}:
+            return True
+        for path in destination.rglob('*'):
+            if path.is_file() and path.name not in {'receipt.json','.nojekyll'}:
+                if fetcher(path.relative_to(destination).as_posix())!=path.read_bytes(): return True
+        return False
+    except (OSError,ValueError,KeyError):
+        # Unavailable/stale/broken live output cannot suppress a verified deployment.
+        return True
+
 def main():
-    p=argparse.ArgumentParser(); p.add_argument('--sync',action='store_true'); p.add_argument('--freeze',action='store_true'); p.add_argument('--output',default='dist')
+    p=argparse.ArgumentParser(); p.add_argument('--sync',action='store_true'); p.add_argument('--freeze',action='store_true'); p.add_argument('--output',default='dist'); p.add_argument('--reconcile',action='store_true')
     args=p.parse_args()
     if args.sync:
         records=[snapshot(k,refresh=not args.freeze) for k in REPOS]
@@ -135,6 +160,12 @@ def main():
         for record in records: write(ROOT/'content/projects'/f'{record["project"]["project_id"]}.json',record)
     else:
         records=[read(ROOT/'content/projects'/f'{k}.json') for k in REPOS]
-    print(json.dumps(render(records,ROOT/args.output,os.environ.get('GITHUB_SHA','local-preview'))))
+    destination=ROOT/args.output
+    receipt=render(records,destination,os.environ.get('GITHUB_SHA','local-preview'))
+    deploy=needs_deployment(destination,receipt) if args.reconcile else True
+    if args.reconcile and os.environ.get('GITHUB_OUTPUT'):
+        with open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf-8') as output:
+            output.write('deploy_required='+str(deploy).lower()+'\n')
+    print(json.dumps({'reconciliation':'DEPLOY_REQUIRED' if deploy else 'VERIFIED_NO_OP','receipt':receipt}))
 
 if __name__=='__main__': main()

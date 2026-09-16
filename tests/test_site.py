@@ -49,4 +49,40 @@ class SiteTests(unittest.TestCase):
         bad=copy.deepcopy(self.records[0]);bad['project']['verification']['tests_passed']=True
         with self.assertRaises(Blocked): site.validate_record(bad)
 
+    def reconciliation_fixture(self, destination):
+        receipt=site.render(self.records,destination,'a'*40)
+        live={p.relative_to(destination).as_posix():p.read_bytes() for p in destination.rglob('*') if p.is_file()}
+        return receipt,live
+
+    def test_identical_live_output_is_noop_even_with_new_build_time(self):
+        with tempfile.TemporaryDirectory() as d:
+            out=Path(d); receipt,live=self.reconciliation_fixture(out)
+            receipt['built_at']='new build, not new verification'
+            self.assertFalse(site.needs_deployment(out,receipt,live.__getitem__))
+
+    def test_site_code_change_cannot_be_skipped(self):
+        with tempfile.TemporaryDirectory() as d:
+            out=Path(d); receipt,live=self.reconciliation_fixture(out)
+            receipt['site_commit']='b'*40
+            self.assertTrue(site.needs_deployment(out,receipt,live.__getitem__))
+
+    def test_missed_source_update_requires_deploy(self):
+        with tempfile.TemporaryDirectory() as d:
+            out=Path(d); receipt,live=self.reconciliation_fixture(out)
+            receipt['sources']['router']['commit']='b'*40
+            self.assertTrue(site.needs_deployment(out,receipt,live.__getitem__))
+
+    def test_broken_page_or_css_not_mistaken_for_noop(self):
+        with tempfile.TemporaryDirectory() as d:
+            out=Path(d); receipt,live=self.reconciliation_fixture(out)
+            for name in ('style.css','qa/index.html','content.json'):
+                corrupted=dict(live); corrupted[name]=b'broken'
+                self.assertTrue(site.needs_deployment(out,receipt,corrupted.__getitem__))
+
+    def test_unavailable_live_site_requires_deploy(self):
+        with tempfile.TemporaryDirectory() as d:
+            out=Path(d); receipt,_=self.reconciliation_fixture(out)
+            def unavailable(name): raise OSError('unavailable')
+            self.assertTrue(site.needs_deployment(out,receipt,unavailable))
+
 if __name__=='__main__': unittest.main()
