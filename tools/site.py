@@ -13,7 +13,8 @@ from publication_guard import Blocked, canonical, digest, scan, validate
 
 ROOT=Path(__file__).resolve().parents[1]
 BASE='/portfolio-site/'
-REPOS={'router':'OleksiiMamchurAlx/adaptive-ai-router-demo','graphics':'OleksiiMamchurAlx/graphics-installer-validation'}
+CANONICAL_URL='https://oleksiimamchuralx.github.io/portfolio-site/'
+CACHE_NOTICE='GENERATED SNAPSHOT / CACHE; NOT AUTHORITATIVE. Offline preview only; live builds resolve protected main through portfolio_registry.json.'
 
 def read(path):
     return json.loads(path.read_text(encoding='utf-8'))
@@ -21,6 +22,48 @@ def read(path):
 def write(path,value):
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
+
+def registry():
+    """The reviewed registry is the sole project admission list, not discovery."""
+    value=read(ROOT/'portfolio_registry.json')
+    if (set(value)!={'schema_version','canonical_url','projects'}
+            or type(value['schema_version']) is not int or value['schema_version']!=1
+            or value['canonical_url']!=CANONICAL_URL
+            or not isinstance(value['projects'],dict) or not value['projects']):
+        raise Blocked('REGISTRY_SCHEMA')
+    repos=set()
+    for key,item in value['projects'].items():
+        if (not re.fullmatch('[a-z][a-z0-9-]*',key) or not isinstance(item,dict)
+                or set(item)!={'repository','tracking','fallback_commit'}
+                or item['tracking']!='protected-main'
+                or not isinstance(item['repository'],str)
+                or not re.fullmatch(r'OleksiiMamchurAlx/[A-Za-z0-9_-]+',item['repository'])
+                or not isinstance(item['fallback_commit'],str)
+                or not re.fullmatch('[0-9a-f]{40}',item['fallback_commit'])
+                or item['repository'] in repos):
+            raise Blocked('REGISTRY_ENTRY')
+        repos.add(item['repository'])
+    return value
+
+def project_repos():
+    return {key:item['repository'] for key,item in registry()['projects'].items()}
+
+def read_cache(project):
+    if project not in project_repos(): raise Blocked('SOURCE_REPO_DENIED')
+    value=read(ROOT/'content/projects'/f'{project}.json')
+    if value.pop('$comment',None)!=CACHE_NOTICE: raise Blocked('CACHE_NOTICE_REQUIRED')
+    validate_record(value)
+    if value['project']['project_id']!=project: raise Blocked('CACHE_PROJECT_MISMATCH')
+    return value
+
+def resolve_records(sync=False,freeze=False):
+    if freeze and not sync: raise Blocked('FREEZE_REQUIRES_SYNC')
+    # An upstream error propagates. Never fall back to cache on a live sync failure.
+    return [snapshot(key,refresh=not freeze) if sync else read_cache(key)
+            for key in project_repos()]
+
+def validate_build_mode(sync,freeze,reconcile):
+    if reconcile and (not sync or freeze): raise Blocked('LIVE_SYNC_REQUIRED')
 
 def fetch(url):
     if not url.startswith(('https://api.github.com/repos/OleksiiMamchurAlx/','https://raw.githubusercontent.com/OleksiiMamchurAlx/')):
@@ -32,16 +75,20 @@ def fetch(url):
     return value
 
 def snapshot(project,refresh=False):
-    config=read(ROOT/'content/sources.json')[project]
+    admitted=registry()['projects']
+    if project not in admitted: raise Blocked('SOURCE_REPO_DENIED')
+    config=admitted[project]
     repo=config['repository']
-    if repo!=REPOS[project]:
-        raise Blocked('SOURCE_REPO_DENIED')
-    sha=config['accepted_commit']
+    sha=config['fallback_commit']
     if refresh:
         metadata=json.loads(fetch('https://api.github.com/repos/'+repo))
-        if metadata['private']:
+        if metadata.get('private') is not False or metadata.get('full_name')!=repo:
             raise Blocked('PRIVATE_SOURCE_DENIED')
-        sha=json.loads(fetch('https://api.github.com/repos/'+repo+'/git/ref/heads/main'))['object']['sha']
+        branch=json.loads(fetch('https://api.github.com/repos/'+repo+'/branches/main'))
+        if branch.get('name')!='main' or branch.get('protected') is not True:
+            raise Blocked('PROTECTED_MAIN_REQUIRED')
+        # Resolve once; all tree/blob reads and the receipt use this exact observed SHA.
+        sha=branch['commit']['sha']
     if not re.fullmatch('[0-9a-f]{40}',sha):
         raise Blocked('INVALID_SOURCE_SHA')
     policy=read(ROOT/'policies'/f'{project}.json')
@@ -68,10 +115,11 @@ def snapshot(project,refresh=False):
     return record
 
 def validate_record(record):
-    if set(record)-{'research'}!={'content_schema_version','source_repository','source_commit','manifest_sha256','project'} or record['content_schema_version']!=1:
+    if set(record)-{'research'}!={'content_schema_version','source_repository','source_commit','manifest_sha256','project'} or type(record['content_schema_version']) is not int or record['content_schema_version']!=1:
         raise Blocked('SITE_SCHEMA')
     p=record['project']; project=p['project_id']
-    if project not in REPOS or record['source_repository']!=REPOS[project]:
+    repos=project_repos()
+    if project not in repos or record['source_repository']!=repos[project]:
         raise Blocked('SITE_SOURCE')
     from publication_guard import validate_project
     validate_project(p,read(ROOT/'policies'/f'{project}.json')['approved_project'])
@@ -86,6 +134,8 @@ def validate_record(record):
 
 def render(records, destination, site_commit='local-preview'):
     for record in records: validate_record(record)
+    if len(records)!=len(project_repos()) or {r['project']['project_id'] for r in records}!=set(project_repos()):
+        raise Blocked('INCOMPLETE_OR_DUPLICATE_SOURCES')
     profile=read(ROOT/'content/profile.json'); experience=read(ROOT/'content/experience.json')
     e=lambda x:html.escape(str(x),quote=True)
     nav=[('','Overview'),('reliability/','Reliability'),('qa/','QA'),('systems/','Systems'),('graphics/','Graphics R&D'),('evidence/','Evidence'),('about/','About'),('contact/','Contact')]
@@ -124,7 +174,7 @@ def render(records, destination, site_commit='local-preview'):
     (destination/'style.css').write_text(css,encoding='utf-8')
     for slug,(title,body) in pages.items():
         target=destination/slug/'index.html'; target.parent.mkdir(parents=True,exist_ok=True)
-        target.write_text(f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)} — Oleksii Mamchur</title><meta name="description" content="Evidence-driven automation, QA and systems diagnostics portfolio."><link rel="stylesheet" href="{BASE}style.css"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315243c'/%3E%3Ctext x='5' y='23' fill='white' font-size='21'%3EOM%3C/text%3E%3C/svg%3E"></head><body><a class="skip" href="#main">Skip to content</a><header><a class="brand" href="{BASE}">OM<span>Oleksii Mamchur</span></a><nav aria-label="Main navigation">{links}</nav></header><main id="main">{body}</main><footer>Independent projects. AI-assisted engineering. Evidence before claims.<br><a href="{BASE}receipt.json">Build and source receipt</a></footer></body></html>''',encoding='utf-8')
+        target.write_text(f'''<!doctype html><html lang="en"><head><link rel="canonical" href="{CANONICAL_URL}{slug+'/' if slug else ''}"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)} — Oleksii Mamchur</title><meta name="description" content="Evidence-driven automation, QA and systems diagnostics portfolio."><link rel="stylesheet" href="{BASE}style.css"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315243c'/%3E%3Ctext x='5' y='23' fill='white' font-size='21'%3EOM%3C/text%3E%3C/svg%3E"></head><body><a class="skip" href="#main">Skip to content</a><header><a class="brand" href="{BASE}">OM<span>Oleksii Mamchur</span></a><nav aria-label="Main navigation">{links}</nav></header><main id="main">{body}</main><footer>Independent projects. AI-assisted engineering. Evidence before claims.<br><a href="{BASE}receipt.json">Build and source receipt</a></footer></body></html>''',encoding='utf-8')
     content_hash=digest(canonical(records))
     receipt={'schema':1,'site_commit':site_commit,'sources':{r['project']['project_id']:{'commit':r['source_commit'],'manifest_sha256':r['manifest_sha256'],'verified_at':r['project']['verification']['verified_at']} for r in records},'content_hash':content_hash,'built_at':datetime.now(timezone.utc).isoformat()}
     write(destination/'receipt.json',receipt)
@@ -170,13 +220,12 @@ def needs_deployment(destination, receipt, fetcher=fetch_live):
 def main():
     p=argparse.ArgumentParser(); p.add_argument('--sync',action='store_true'); p.add_argument('--freeze',action='store_true'); p.add_argument('--output',default='dist'); p.add_argument('--reconcile',action='store_true')
     args=p.parse_args()
+    validate_build_mode(args.sync,args.freeze,args.reconcile)
+    records=resolve_records(args.sync,args.freeze)
     if args.sync:
-        records=[snapshot(k,refresh=not args.freeze) for k in REPOS]
         # Only the generated public schema enters content; remote code is not executed.
         for record in records: validate_record(record)
-        for record in records: write(ROOT/'content/projects'/f'{record["project"]["project_id"]}.json',record)
-    else:
-        records=[read(ROOT/'content/projects'/f'{k}.json') for k in REPOS]
+        for record in records: write(ROOT/'content/projects'/f'{record["project"]["project_id"]}.json',{'$comment':CACHE_NOTICE,**record})
     destination=ROOT/args.output
     receipt=render(records,destination,os.environ.get('GITHUB_SHA','local-preview'))
     deploy=needs_deployment(destination,receipt) if args.reconcile else True

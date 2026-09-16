@@ -6,7 +6,7 @@
   "required": ["content_schema_version", "source_repository", "source_commit", "manifest_sha256", "project"],
   "properties": {
     "content_schema_version": {"const": 1},
-    "source_repository": {"enum": ["OleksiiMamchurAlx/adaptive-ai-router-demo", "OleksiiMamchurAlx/graphics-installer-validation"]},
+    "source_repository": {"type": "string", "pattern": "^OleksiiMamchurAlx/[A-Za-z0-9_-]+$", "description": "Must match this project's entry in the reviewed portfolio_registry.json; enforced by validate_record."},
     "source_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
     "manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "project": {"type": "object", "description": "Exact approved project contract plus independently timestamped verification; enforced by validate_record and the pinned project policy"},

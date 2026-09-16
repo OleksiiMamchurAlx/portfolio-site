@@ -31,6 +31,8 @@ jobs:
       - name: Public-only reconciliation and build
         id: reconcile
         run: python tools/site.py --sync --reconcile
+      - name: Verify allowlisted external links before upload
+        run: python tools/external_links.py --root dist
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: steps.reconcile.outputs.deploy_required == 'true'
         with:

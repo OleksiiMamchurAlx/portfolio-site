@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "canonical_url": "https://oleksiimamchuralx.github.io/portfolio-site/",
+  "projects": {
+    "router": {
+      "repository": "OleksiiMamchurAlx/adaptive-ai-router-demo",
+      "tracking": "protected-main",
+      "fallback_commit": "36fdceb3d0291403d0beaaf3e798986a1b0826b3"
+    },
+    "graphics": {
+      "repository": "OleksiiMamchurAlx/graphics-installer-validation",
+      "tracking": "protected-main",
+      "fallback_commit": "bb590e79bd807fba8cc9889570024c897c75614e"
+    }
+  }
+}

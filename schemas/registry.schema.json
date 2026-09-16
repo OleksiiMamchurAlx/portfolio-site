@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Reviewed portfolio admission registry v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "canonical_url", "projects"],
+  "properties": {
+    "schema_version": {"type": "integer", "const": 1},
+    "canonical_url": {"const": "https://oleksiimamchuralx.github.io/portfolio-site/"},
+    "projects": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {"pattern": "^[a-z][a-z0-9-]*$"},
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["repository", "tracking", "fallback_commit"],
+        "properties": {
+          "repository": {"type": "string", "pattern": "^OleksiiMamchurAlx/[A-Za-z0-9_-]+$"},
+          "tracking": {"const": "protected-main"},
+          "fallback_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$", "description": "Explicit frozen preview only; never an automatic live fallback."}
+        }
+      }
+    }
+  }
+}

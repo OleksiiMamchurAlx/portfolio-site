@@ -2,6 +2,9 @@
 
 One factual core, four views: Reliability & Automation, QA & Testing, Systems & Diagnostics, Graphics R&D.
 
+Canonical portfolio: [GitHub Pages](https://oleksiimamchuralx.github.io/portfolio-site/).
+See [Source of Truth](SOURCE_OF_TRUTH.md) and the reviewed [portfolio registry](portfolio_registry.json).
+
 The static site reads only two public repositories, checks their exact trees and publication manifests against reviewed policy, then renders source-linked evidence. It never reads private control data or a workstation database. New claims or changed reviewed source hashes stop sync until policy review.
 
 ## Run safely
@@ -14,7 +17,7 @@ python -m unittest discover -s tests -v
 python tools/site.py --sync
 ```
 
-The first command builds the checked-in public snapshot offline. Sync downloads only allowlisted public files; it does not execute downloaded code. Serve `dist` under `/portfolio-site/` to match GitHub Pages paths.
+The first command builds a labelled, potentially stale cache for offline preview. It is not the live authority. Sync resolves protected public main, downloads only allowlisted public files and never executes downloaded code. Live reconciliation requires sync and cannot use cache/frozen fallback. Serve `dist` under `/portfolio-site/` to match GitHub Pages paths.
 
 ## Ownership and AI
 
