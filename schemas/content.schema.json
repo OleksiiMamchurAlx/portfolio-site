@@ -9,6 +9,7 @@
     "source_repository": {"enum": ["OleksiiMamchurAlx/adaptive-ai-router-demo", "OleksiiMamchurAlx/graphics-installer-validation"]},
     "source_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
     "manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
-    "project": {"type": "object", "description": "Exact approved project contract plus independently timestamped verification; enforced by validate_record and the pinned project policy"}
+    "project": {"type": "object", "description": "Exact approved project contract plus independently timestamped verification; enforced by validate_record and the pinned project policy"},
+    "research": {"type": "object", "description": "Optional secondary planning case. Exact equality with reviewed approved_research is enforced by validate_record; no arbitrary claims or private fields."}
   }
 }

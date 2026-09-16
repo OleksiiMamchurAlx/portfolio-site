@@ -60,17 +60,25 @@ def snapshot(project,refresh=False):
             raise Blocked('POLICY_REVIEW_REQUIRED')
         validate(dest,policy)
         data=read(dest/'project.json'); manifest=digest((dest/'PUBLICATION_MANIFEST.json').read_bytes())
-    return {'content_schema_version':1,'source_repository':repo,'source_commit':sha,
+        research=read(dest/'projects/future-unreal-automation-rd.json') if 'approved_research' in policy else None
+    record={'content_schema_version':1,'source_repository':repo,'source_commit':sha,
             'manifest_sha256':manifest,'project':data}
+    if research is not None: record['research']=research
+    validate_record(record)
+    return record
 
 def validate_record(record):
-    if set(record)!={'content_schema_version','source_repository','source_commit','manifest_sha256','project'} or record['content_schema_version']!=1:
+    if set(record)-{'research'}!={'content_schema_version','source_repository','source_commit','manifest_sha256','project'} or record['content_schema_version']!=1:
         raise Blocked('SITE_SCHEMA')
     p=record['project']; project=p['project_id']
     if project not in REPOS or record['source_repository']!=REPOS[project]:
         raise Blocked('SITE_SOURCE')
     from publication_guard import validate_project
     validate_project(p,read(ROOT/'policies'/f'{project}.json')['approved_project'])
+    if 'research' in record:
+        approved=read(ROOT/'policies'/f'{project}.json').get('approved_research')
+        if project!='router' or not approved or canonical(record['research'])!=canonical(approved):
+            raise Blocked('UNREVIEWED_RESEARCH')
     for name,length in [('source_commit',40),('manifest_sha256',64)]:
         if not re.fullmatch('[0-9a-f]{'+str(length)+'}',record[name]):
             raise Blocked('SITE_PROVENANCE')
@@ -93,12 +101,21 @@ def render(records, destination, site_commit='local-preview'):
 <p><a href="{repo}/tree/{r['source_commit']}">Exact published revision</a> · <a href="{repo}/blob/{r['source_commit']}/PUBLICATION_MANIFEST.json">File manifest</a></p>
 <ul>{''.join('<li>'+e(s)+'</li>' for s in p['limitations'])}</ul></details></article>'''
     all_cards=''.join(card(r) for r in records)
+    def research_section():
+        sections=[]
+        for r in records:
+            if 'research' not in r: continue
+            item=r['research']; repo='https://github.com/'+r['source_repository']
+            proof=repo+'/blob/'+r['source_commit']+'/'+item['evidence_links'][0]
+            sections.append(f'<section class="note" aria-labelledby="future-rd"><h2 id="future-rd">Future Automation R&amp;D</h2><h3>{e(item["title"])}</h3><p><strong>{e(item["status"])}</strong></p><p>{e(item["summary"])}</p><p>{e(item["role"])}</p><p><a href="{e(proof)}">Planning evidence and method</a> · Summary updated {e(item["updated_at"])}</p><details><summary>Scope, AI use and limitations</summary><p>{e(item["ai_disclosure"])}</p><ul>'+''.join('<li>'+e(s)+'</li>' for s in item['limitations'])+'</ul></details></section>')
+        return ''.join(sections)
     overview=f'<section class="hero"><p class="eyebrow">{e(profile["location"])}</p><h1>Reliable work.<br>Visible evidence.</h1><p class="lead">{e(profile["headline"])}</p><p>{e(profile["summary"])}</p><a class="cta" href="{BASE}evidence/">Explore the evidence</a></section><section class="projects">{all_cards}</section>'
     pages={'':('Engineering portfolio',overview)}
     for lens in read(ROOT/'content/skills.json')['lenses']:
         cards=''.join(card(r) for r in records if set(r['project']['category'])&set(lens['tags']))
         extra='<p>Prior professional support background is separate from controlled project evidence.</p>' if lens['id']=='systems' else ''
-        pages[lens['id']]=(lens['title'],f'<h1>{e(lens["title"])}</h1>{extra}<section class="projects">{cards}</section>')
+        research=research_section() if lens['id'] in {'reliability','qa'} else ''
+        pages[lens['id']]=(lens['title'],f'<h1>{e(lens["title"])}</h1>{extra}<section class="projects">{cards}</section>{research}')
     pages['evidence']=('Evidence & Methods','<h1>Every number has a source.</h1><p>Public test results, immutable source revisions and explicit limitations. Build time is not test time. Synthetic graphics data is not a live-game benchmark.</p>'+all_cards+'<h2>Method</h2><p>Reviewed source → tests → exact manifest → public GitHub → validated site content. The website never reads private control repositories or local databases.</p>')
     pages['about']=('About & Experience',f'<h1>{e(profile["name"])}</h1><p>{e(profile["summary"])}</p><h2>Professional background</h2><ul>'+''.join('<li>'+e(x)+'</li>' for x in experience['areas'])+f'</ul><p class="note">{e(experience["provenance"])}</p><h2>How I use AI</h2><p>{e(profile["ai_disclosure"])}</p><h2>Currently developing</h2><ul>'+''.join('<li>'+e(x)+'</li>' for x in experience['developing'])+'</ul>')
     pages['contact']=('Contact',f'<h1>Start with the work.</h1><p>Explore the projects, methods and source code on my GitHub profile.</p><a class="cta" href="{e(profile["github"])}">Oleksii Mamchur on GitHub</a>')

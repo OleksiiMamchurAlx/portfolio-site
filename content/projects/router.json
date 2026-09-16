@@ -1,8 +1,8 @@
 {
   "content_schema_version": 1,
   "source_repository": "OleksiiMamchurAlx/adaptive-ai-router-demo",
-  "source_commit": "379580c6207422d68e339f49bcfbda2c73b19f2e",
-  "manifest_sha256": "4ab2e8a2f46540e495a1ad9b8eec1413f5c832a3a8859dd03f50557fa10bf722",
+  "source_commit": "36fdceb3d0291403d0beaaf3e798986a1b0826b3",
+  "manifest_sha256": "9a2a279afd9deaed9611f9b8d6742a30347590a28af3447d1c05c7f802aa2788",
   "project": {
     "schema_version": 1,
     "project_id": "router",
@@ -34,13 +34,58 @@
       "implementation": "AI-assisted"
     },
     "verification": {
-      "tests_passed": 20,
+      "tests_passed": 26,
       "tests_failed": 0,
       "tests_skipped": 0,
       "scope": "isolated-public-code-tests",
-      "source_commit": "45bd52d78ac1c057ad968c657265a888a72188d6",
-      "verified_at": "2026-09-16T07:17:06.277500+00:00",
-      "source_tree_sha256": "f7a3668394a7d098fcec2d9422719cb6f2bf9ea4d59ad588f90903b0e788d76e"
+      "source_commit": "7840e696c5be846c3711f85d0b26e26458eaa111",
+      "verified_at": "2026-09-16T19:20:55.015518+00:00",
+      "source_tree_sha256": "4820c3a3dca583ba40bfe44e1304fb8bb7b92074614e2969b4408c27b5e4e041"
     }
+  },
+  "research": {
+    "schema_version": 1,
+    "project_id": "future-unreal-automation-rd",
+    "title": "Future Game Automation / Unreal R&D",
+    "status": "Research / architecture planning",
+    "role": "Project owner; AI-assisted architecture and validation planning",
+    "summary": "A bounded architecture study for an independent game-development control plane: dependency-aware tasks, separate execution and validation, evidence tied to revisions, failure classification and explicit human review gates.",
+    "technologies_discussed": [
+      "Unreal Engine",
+      "Python",
+      "SQLite",
+      "Git"
+    ],
+    "skills_demonstrated": [
+      "Task dependency design",
+      "Acceptance-test planning",
+      "Telemetry and evidence design",
+      "Failure classification and bounded repair planning",
+      "AI-assisted orchestration planning"
+    ],
+    "evidence_type": "Reviewed local architecture documents and task manifests; planning evidence only",
+    "limitations": [
+      "This public case covers architecture planning, not independently reverified gameplay.",
+      "No shipped game or production Unreal/MMO infrastructure is claimed.",
+      "Multiplayer, combat completeness and performance are not established by this case.",
+      "A technical test does not replace subjective camera or movement acceptance.",
+      "No model-weight training or general routing superiority is claimed."
+    ],
+    "private_sources_excluded": [
+      "Raw conversations and prompts",
+      "Runtime identifiers, databases and logs",
+      "Local paths and environment inventories",
+      "Game assets, engine code and third-party binaries"
+    ],
+    "ai_disclosure": "I use AI tools as engineering assistants. I define project goals, constraints and acceptance criteria, review outputs, preserve failures and limitations, and validate results through tests or reproducible evidence.",
+    "target_role_tags": [
+      "reliability",
+      "automation",
+      "qa"
+    ],
+    "updated_at": "2026-09-16",
+    "evidence_links": [
+      "docs/FUTURE_RD_METHOD.md"
+    ]
   }
 }
