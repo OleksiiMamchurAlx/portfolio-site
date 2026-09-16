@@ -85,4 +85,36 @@ class SiteTests(unittest.TestCase):
             def unavailable(name): raise OSError('unavailable')
             self.assertTrue(site.needs_deployment(out,receipt,unavailable))
 
+    def with_research(self):
+        records=copy.deepcopy(self.records)
+        records[0]['research']=site.read(site.ROOT/'policies/router.json')['approved_research']
+        return records
+
+    def test_future_rd_only_on_secondary_lenses(self):
+        with tempfile.TemporaryDirectory() as d:
+            records=self.with_research();out=Path(d);site.render(records,out)
+            for lens in ('reliability','qa'):
+                page=(out/lens/'index.html').read_text(encoding='utf-8')
+                self.assertIn('Future Automation R&amp;D',page)
+                self.assertIn('Research / architecture planning',page)
+            self.assertNotIn('Future Automation', (out/'index.html').read_text())
+
+    def test_raw_chat_private_ids_and_unreviewed_research_blocked(self):
+        for field,value in [('messages',[{'role':'user','content':'private fixture'}]),('run_id','fixture'),('summary','A shipped commercial game'),('schema_version',True)]:
+            records=self.with_research();records[0]['research'][field]=value
+            with self.assertRaises(Blocked): site.validate_record(records[0])
+
+    def test_research_cannot_import_private_source(self):
+        records=self.with_research();records[0]['research']['evidence_links']=['private/control']
+        with self.assertRaises(Blocked): site.validate_record(records[0])
+
+    def test_research_changes_content_hash_and_keeps_noop(self):
+        with tempfile.TemporaryDirectory() as d:
+            out=Path(d);without=copy.deepcopy(self.records);without[0].pop('research',None)
+            old=site.render(without,out,'a'*40)
+            new=site.render(self.with_research(),out,'a'*40)
+            self.assertNotEqual(old['content_hash'],new['content_hash'])
+            live={p.relative_to(out).as_posix():p.read_bytes() for p in out.rglob('*') if p.is_file()}
+            self.assertFalse(site.needs_deployment(out,new,live.__getitem__))
+
 if __name__=='__main__': unittest.main()

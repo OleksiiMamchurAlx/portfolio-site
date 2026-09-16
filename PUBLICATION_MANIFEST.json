@@ -104,7 +104,7 @@
     },
     {
       "path": "content/projects/graphics.json",
-      "sha256": "d67c644f19db7a94b914ead5503a5b80a69f2c7d156a17f8e4bf5e2b51ae14be",
+      "sha256": "11ec4fe57652a664b753e8a80679daf59a07da203fa741a53fcb0e1a81eaf0e4",
       "size_bytes": 1471,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
@@ -114,8 +114,8 @@
     },
     {
       "path": "content/projects/router.json",
-      "sha256": "de76872c03e9222b9f95a77262d9726d0b879d846aa006d31c6fe4f93f22cd53",
-      "size_bytes": 1417,
+      "sha256": "d6772aa49b3dda0dc826f6fff80c1b4d8f99dd2e922bae74ba624f35c46aa1f6",
+      "size_bytes": 3497,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
@@ -134,7 +134,7 @@
     },
     {
       "path": "content/sources.json",
-      "sha256": "da0718ff11e6cdbf85f9f108f3e275f54c17630b07bb2e9c418a43db312eea8c",
+      "sha256": "34e2418174d985256cc95160663817b1aca0bc66c80b561fcb5a0850a31163ea",
       "size_bytes": 268,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
@@ -154,8 +154,8 @@
     },
     {
       "path": "policies/router.json",
-      "sha256": "1c38f3cc4a5f10985e72a4d947cd332e95d08addbc4e6f7180a5cab33c6450cf",
-      "size_bytes": 3424,
+      "sha256": "e09a8a45c744e0463e4a0a54460d67045062b6376a3d42341960e8f1ae8c3735",
+      "size_bytes": 6071,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
@@ -164,8 +164,8 @@
     },
     {
       "path": "schemas/content.schema.json",
-      "sha256": "9687e450cb278810f33ea3ef97c9895b2c16712cf1dc44078367b01c6dc266e9",
-      "size_bytes": 796,
+      "sha256": "13bc8a0677d734402fbe1dbfc258dc813b3c67b88b8b7553cb06ad9aa0324dbc",
+      "size_bytes": 1002,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
@@ -174,8 +174,8 @@
     },
     {
       "path": "tests/test_site.py",
-      "sha256": "9065f5eeb5699a22d0df4637de8b2b6bbd4afc932c07e0d00495240cc5536a95",
-      "size_bytes": 4839,
+      "sha256": "21002df1995443ce72e922ea11aab9477aef1e6346007637612b1a4b1488b35c",
+      "size_bytes": 6755,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
@@ -214,8 +214,8 @@
     },
     {
       "path": "tools/site.py",
-      "sha256": "1185b1cf09ae947cb6b6a64e8ba5f830e13d9fd9fb1b226dd5fc2faf8782d7c4",
-      "size_bytes": 12041,
+      "sha256": "47099de457b4b07e67c53e022461b4e8a740adba086bb8ff81751b4a2f125ec9",
+      "size_bytes": 13475,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
