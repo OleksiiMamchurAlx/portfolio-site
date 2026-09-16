@@ -33,7 +33,7 @@ def run(refresh=False):
         for n,b in sorted(found.items()) if n!='PUBLICATION_MANIFEST.json']
     manifest={'schema':1,'excludes_self':True,'files':entries}
     if refresh:
-        (ROOT/'PUBLICATION_MANIFEST.json').write_text(json.dumps(manifest,indent=2)+'\n',encoding='utf-8')
+        (ROOT/'PUBLICATION_MANIFEST.json').write_text(json.dumps(manifest,indent=2)+'\n',encoding='utf-8',newline='\n')
     elif json.loads(found['PUBLICATION_MANIFEST.json'])!=manifest: raise Blocked('MANIFEST_MISMATCH')
     return {'status':'PASS','files':len(ALLOW),'license_boundary':'Original site; no binaries or upstream graphics code'}
 
