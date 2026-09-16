@@ -24,8 +24,8 @@
     },
     {
       "path": ".github/workflows/pages.yml",
-      "sha256": "98acbe0eca7eb846d100c3e5e8353a9cbc6f84205ed4dcd88d4b1634c7398f57",
-      "size_bytes": 1969,
+      "sha256": "a1552ce43b2f0ce6247ed7627d22953e920bafafd46be4c1eab66d858b564b43",
+      "size_bytes": 2264,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
@@ -174,8 +174,8 @@
     },
     {
       "path": "tests/test_site.py",
-      "sha256": "6bfe806426c9f5d02f2995ce709d7c5b89929717331fe8c5a573e2f5461ed126",
-      "size_bytes": 2901,
+      "sha256": "9065f5eeb5699a22d0df4637de8b2b6bbd4afc932c07e0d00495240cc5536a95",
+      "size_bytes": 4839,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
@@ -214,8 +214,8 @@
     },
     {
       "path": "tools/site.py",
-      "sha256": "4151262766d5d60393705eefddeba1da27221c7e8b3dfcfb58a2601c832ae42b",
-      "size_bytes": 10289,
+      "sha256": "1185b1cf09ae947cb6b6a64e8ba5f830e13d9fd9fb1b226dd5fc2faf8782d7c4",
+      "size_bytes": 12041,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
