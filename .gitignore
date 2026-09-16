@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+dist/
+.sites-runtime/
+.snapshot-cache/
+*.sqlite3
+.env

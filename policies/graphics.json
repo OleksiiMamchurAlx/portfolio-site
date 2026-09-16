@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "default_class": "REVIEWED",
+  "auto_merge": false,
+  "allowed_files": [
+    ".gitattributes",
+    ".github/workflows/ci.yml",
+    ".github/workflows/publication-check.yml",
+    ".gitignore",
+    "AGENTS.md",
+    "PUBLICATION_MANIFEST.json",
+    "README.md",
+    "RIGHTS_AND_ATTRIBUTION.md",
+    "evidence/installer-matrix.json",
+    "evidence/synthetic-report.json",
+    "evidence/unit-tests.txt",
+    "evidence/verification.json",
+    "fixtures/capture.synthetic.json",
+    "frame_report.py",
+    "project.json",
+    "publication-policy.json",
+    "test_frame_report.py",
+    "tools/publication_guard.py"
+  ],
+  "reviewed_hashes": {
+    ".gitattributes": "d60f352d0db1404c70afb4bb8b2ca3fd1c610572aa40720e8a0b7baa7885418c",
+    ".gitignore": "d0b0c42c42cc3104dd0c153787b8fe585346aea847f64084848ffc2cb88de650",
+    "AGENTS.md": "72a1501f4a53e5b643ba8dd2a0bcbad62c0721bf5ae930f4957e0f357da2e8a0",
+    "frame_report.py": "b5114deee9361760f6cb47940efe36fab8853635947382abd5df3e3338800e1c",
+    "README.md": "2934ee9f96ba097221cb4649ddf298abba36c92c0c3f6d47c3bde80bd9f9a1b2",
+    "RIGHTS_AND_ATTRIBUTION.md": "8e5391d5f57823ea75ecb0bc0b7839c148fe9088c6692d686990b67cdc3fd9ef",
+    "test_frame_report.py": "d335a688c7b69d3cd7435002994e8ce8df6ca615890bb994e45d88d3ede74386",
+    ".github/workflows/ci.yml": "073f39e1b171f93616360d7454dbef5930236d8f2893cdb688ed3cb219fd2e50",
+    ".github/workflows/publication-check.yml": "c21358dbcd4dadda198c4147f99d03a220369ae4eb323f326b0aae15e087f3de",
+    "evidence/installer-matrix.json": "3f7b6bb9152a8bd645ad9a54f7012d32bb34bdfe41d8740fa617b29e7233b430",
+    "evidence/synthetic-report.json": "d5499956e1d1fc1e0a32781986876714de18c97ac88fb701d932bd7cf69db24a",
+    "evidence/unit-tests.txt": "62d81670a7fd10af46d632b25d22e60fd7356db2fd5ff1fa774b633a14d129fa",
+    "evidence/verification.json": "db8d8963045ea7068767a4dac91a6544b162a5b6daecbccc9942731cd8cb9556",
+    "fixtures/capture.synthetic.json": "af45a9f569a94d103dcaf30b68c34b2cd10d4a39a40e7ce22e1cb51323f79e27",
+    "tools/publication_guard.py": "8530e5965ad2a2ff965f99a7801acfd09115ff55f68cdeee4f527404f6a28857"
+  },
+  "approved_project": {
+    "schema_version": 1,
+    "project_id": "graphics",
+    "title": "Graphics Package Diagnostics & Installer Validation",
+    "source_repo": "https://github.com/OleksiiMamchurAlx/graphics-installer-validation",
+    "category": [
+      "qa",
+      "systems",
+      "graphics"
+    ],
+    "technology": [
+      "Python",
+      "PowerShell"
+    ],
+    "skills_demonstrated": [
+      "installer validation evidence",
+      "rollback reasoning",
+      "synthetic frame-time analysis"
+    ],
+    "limitations": [
+      "historical installer matrix, not a new installer run",
+      "synthetic data is not a game benchmark",
+      "no verified final-build 100+ FPS",
+      "no game binaries or renderer implementation"
+    ],
+    "ai_assistance": {
+      "owner_role": "project owner",
+      "implementation": "AI-assisted"
+    }
+  },
+  "authority": "Private AIQ reviewed configuration; candidate CI is not approval authority",
+  "rights_review": "Original project code, authored text and synthetic fixtures; existing rights notice retained"
+}

@@ -1,0 +1,52 @@
+name: Roll back to verified artifact
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: Successful Sync and deploy workflow run to restore
+        required: true
+        type: string
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: portfolio-pages
+  cancel-in-progress: false
+jobs:
+  restore:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      actions: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - name: Validate original run
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RESTORE_RUN: ${{ inputs.run_id }}
+        run: |
+          [[ "$RESTORE_RUN" =~ ^[0-9]+$ ]] || exit 1
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$RESTORE_RUN" --jq 'select(.conclusion == "success" and .path == ".github/workflows/pages.yml" and .head_branch == "main") | .id' | grep -Fx "$RESTORE_RUN"
+      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ inputs.run_id }}
+          name: verified-site
+          path: dist
+      - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b
+        with:
+          path: dist
+      - id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
+      - env:
+          PAGES_URL: ${{ steps.deployment.outputs.page_url }}
+        run: python tools/smoke.py --url "$PAGES_URL"

@@ -1,0 +1,6 @@
+{
+  "provenance": "Owner-reported professional background, as disclosed in the public GitHub profile; not inferred from project test counts.",
+  "areas": ["Windows and endpoint support", "Local-network and connected-device troubleshooting", "Hardware and electronics diagnostics", "Technical documentation"],
+  "developing": ["Deeper automated testing", "Small Python integrations", "Observability fundamentals"],
+  "limitations": ["Project results do not establish enterprise cloud or production SRE experience", "No independent Java or full-stack proficiency claim"]
+}

@@ -1,0 +1,236 @@
+{
+  "schema": 1,
+  "excludes_self": true,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "sha256": "d60f352d0db1404c70afb4bb8b2ca3fd1c610572aa40720e8a0b7baa7885418c",
+      "size_bytes": 19,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "9f9ac530c5a9d93b8f7dba91060efa848969221c1f8ecc9665009327d3a8c86c",
+      "size_bytes": 542,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": ".github/workflows/pages.yml",
+      "sha256": "98acbe0eca7eb846d100c3e5e8353a9cbc6f84205ed4dcd88d4b1634c7398f57",
+      "size_bytes": 1969,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": ".github/workflows/rollback.yml",
+      "sha256": "419f1b8818973b4e87d712096cc0a9de56724c255ca1b3bb12fb93ede3a30ac6",
+      "size_bytes": 1741,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "e1800f74999c8d7af31235284428b41af563f6417ab1b66bbae4098ad0e079d4",
+      "size_bytes": 73,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "61e3b9fab65003b65addd9ad7f26b4b2e4d5e172348493d7b70882bb4fdeb70a",
+      "size_bytes": 441,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": "README.md",
+      "sha256": "d3d4a85345bab74ec5d192c583be62438a93707230def8e135950a2819d32d55",
+      "size_bytes": 2231,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": "assets/style.css",
+      "sha256": "bfd5fdaaa43094de1e70711e9681e52d96f44214adfb874a3f31d9ffaf6f3518",
+      "size_bytes": 2357,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": "content/experience.json",
+      "sha256": "1333181f9229627875e6704c8015cb76645fa7ae6ae4d8fabc26fd0ffe23fdb6",
+      "size_bytes": 571,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": "content/profile.json",
+      "sha256": "506b67d6585ae86bef96477af9783251e7032a81d7f07f87f2661111b591ebce",
+      "size_bytes": 593,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": "content/projects/graphics.json",
+      "sha256": "92ea0694a15b14131891fd804fbb97c9a2bfdad1816eea402cea6f1af48d611b",
+      "size_bytes": 1516,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": "content/projects/router.json",
+      "sha256": "a61ee15dc7cf3ee55296ae570097252a05408d89440a1c3b351a9d4e79bcaf37",
+      "size_bytes": 1463,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": "content/skills.json",
+      "sha256": "4c4f45491a25d94fcea2f89985f26252d97df589e4f48c418c5f737fad2e2393",
+      "size_bytes": 283,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": "content/sources.json",
+      "sha256": "da0718ff11e6cdbf85f9f108f3e275f54c17630b07bb2e9c418a43db312eea8c",
+      "size_bytes": 268,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": "policies/graphics.json",
+      "sha256": "bdf0f9f9ef60e11407fe653fe6bcb8629697ff26a617f939ba3e9d1f474621f6",
+      "size_bytes": 3197,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": "policies/router.json",
+      "sha256": "1c38f3cc4a5f10985e72a4d947cd332e95d08addbc4e6f7180a5cab33c6450cf",
+      "size_bytes": 3424,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": "schemas/content.schema.json",
+      "sha256": "9687e450cb278810f33ea3ef97c9895b2c16712cf1dc44078367b01c6dc266e9",
+      "size_bytes": 796,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": "tests/test_site.py",
+      "sha256": "6bfe806426c9f5d02f2995ce709d7c5b89929717331fe8c5a573e2f5461ed126",
+      "size_bytes": 2901,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": "tools/check.py",
+      "sha256": "c299dd1cae72398eb02ce6782d70b2be9fe0a57058a8adb2da014553ec368880",
+      "size_bytes": 2436,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": "tools/preview.py",
+      "sha256": "c9ee181dc0073630c4d59f7e58cca4ccb2104337a5c99044dcb23dc65c1f1ec2",
+      "size_bytes": 675,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": "tools/publication_guard.py",
+      "sha256": "8530e5965ad2a2ff965f99a7801acfd09115ff55f68cdeee4f527404f6a28857",
+      "size_bytes": 6433,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": "tools/site.py",
+      "sha256": "c611425950bee714abad353bec1a64eab06190fa22cb42efa04c8201aaa5add6",
+      "size_bytes": 10276,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": "tools/smoke.py",
+      "sha256": "4d35077e202cf6a4e7382d1239fed835afabd5330e93796fdd6506ca83032a4d",
+      "size_bytes": 1180,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    }
+  ]
+}

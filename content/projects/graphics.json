@@ -1,0 +1,45 @@
+{
+  "content_schema_version": 1,
+  "source_repository": "OleksiiMamchurAlx/graphics-installer-validation",
+  "source_commit": "97ceec163c6d994ff4d75ec9a3ec5a420186b8e7",
+  "manifest_sha256": "2bebf269dbade10c59dd1b3eae6032b34dd818508e59860351e24bece40cd538",
+  "project": {
+    "schema_version": 1,
+    "project_id": "graphics",
+    "title": "Graphics Package Diagnostics & Installer Validation",
+    "source_repo": "https://github.com/OleksiiMamchurAlx/graphics-installer-validation",
+    "category": [
+      "qa",
+      "systems",
+      "graphics"
+    ],
+    "technology": [
+      "Python",
+      "PowerShell"
+    ],
+    "skills_demonstrated": [
+      "installer validation evidence",
+      "rollback reasoning",
+      "synthetic frame-time analysis"
+    ],
+    "limitations": [
+      "historical installer matrix, not a new installer run",
+      "synthetic data is not a game benchmark",
+      "no verified final-build 100+ FPS",
+      "no game binaries or renderer implementation"
+    ],
+    "ai_assistance": {
+      "owner_role": "project owner",
+      "implementation": "AI-assisted"
+    },
+    "verification": {
+      "tests_passed": 7,
+      "tests_failed": 0,
+      "tests_skipped": 0,
+      "scope": "isolated-public-code-tests",
+      "source_commit": "49521f35f545905d969cad9cf07ae4e5f6c75b29",
+      "verified_at": "2026-09-16T07:16:53.741493+00:00",
+      "source_tree_sha256": "84e2dff497e3db3bbc8ba039d3e0640b5b70d13e46caae03d4feaed3dfdfa4d4"
+    }
+  }
+}
