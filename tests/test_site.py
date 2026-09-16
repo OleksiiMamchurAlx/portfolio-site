@@ -12,7 +12,7 @@ from publication_guard import Blocked,scan
 
 class SiteTests(unittest.TestCase):
     def setUp(self):
-        self.records=[site.read(site.ROOT/'content/projects'/f'{k}.json') for k in site.REPOS]
+        self.records=[site.read_cache(k) for k in site.project_repos()]
     def test_valid_schema(self):
         for r in self.records: site.validate_record(r)
     def test_unreviewed_claim(self):
