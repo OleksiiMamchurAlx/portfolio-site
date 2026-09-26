@@ -124,7 +124,7 @@
     },
     {
       "path": "content/projects/router.json",
-      "sha256": "5052e29331772d8730fe22c05a97057499b2042a2fa710120c30fbf7b13c4850",
+      "sha256": "3df151ee758d6e61f45e7d9470c9c99d33dc8333ac8cac139ae26a66d6298ab1",
       "size_bytes": 3651,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
