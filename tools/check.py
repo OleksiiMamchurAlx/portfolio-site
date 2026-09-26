@@ -10,7 +10,7 @@ ALLOW={'.gitattributes','.gitignore','AGENTS.md','README.md','PUBLICATION_MANIFE
        'assets/style.css','content/profile.json','content/experience.json','content/skills.json','portfolio_registry.json','SOURCE_OF_TRUTH.md',
        'content/projects/router.json','content/projects/graphics.json','policies/router.json','policies/graphics.json',
        'schemas/content.schema.json','schemas/registry.schema.json','tools/publication_guard.py','tools/site.py','tools/check.py','tools/preview.py',
-       'tools/external_links.py','tests/test_authority.py','tests/test_external_links.py',
+       'tools/external_links.py','tools/native_demo.py','tests/test_authority.py','tests/test_external_links.py','tests/test_native_demo_integration.py',
        'tools/smoke.py','tests/test_site.py','.github/workflows/ci.yml','.github/workflows/pages.yml','.github/workflows/rollback.yml'}
 
 def files():
