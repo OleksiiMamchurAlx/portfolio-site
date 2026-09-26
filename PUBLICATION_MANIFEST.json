@@ -154,8 +154,8 @@
     },
     {
       "path": "policies/router.json",
-      "sha256": "e09a8a45c744e0463e4a0a54460d67045062b6376a3d42341960e8f1ae8c3735",
-      "size_bytes": 6071,
+      "sha256": "dc5c1d9ded7afdc88594c7cceff4311050b20ad272d5fafe1f2d0b5025cd62ef",
+      "size_bytes": 8054,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
@@ -213,6 +213,16 @@
       "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
     },
     {
+      "path": "tests/test_native_demo_integration.py",
+      "sha256": "098ac9ec5e4b9a3d4d1f29b8349a27a804c37c52220a56d048a32cc3bf8e71a7",
+      "size_bytes": 4846,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
       "path": "tests/test_site.py",
       "sha256": "eab80480d7f682414accdc7b38ef34973628d082493c39a579c00c040bd506e8",
       "size_bytes": 6732,
@@ -224,8 +234,8 @@
     },
     {
       "path": "tools/check.py",
-      "sha256": "f2fbc298d7fd21d4eca2038afc5f5149f1fc57b9b67c69045c15a42e4a8333a0",
-      "size_bytes": 2595,
+      "sha256": "cef52877edaf2d1b0fcdd5b685b5fdec5caec1e4f2f9748313831785f0e7d30b",
+      "size_bytes": 2658,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
@@ -236,6 +246,16 @@
       "path": "tools/external_links.py",
       "sha256": "007aa8839f18f89234af7b72105234adfd3a1709fc4ab7a9b75678fb0d7ec85b",
       "size_bytes": 3768,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": "tools/native_demo.py",
+      "sha256": "67be9d34393f39128f6c5bc0c0ebda5367d52f97f2565d932fe0f2ace6052196",
+      "size_bytes": 2424,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
@@ -264,8 +284,8 @@
     },
     {
       "path": "tools/site.py",
-      "sha256": "c74d0625801c2eed286d8fef77aa29198d1f40bba324c6b084af48921e155a78",
-      "size_bytes": 16283,
+      "sha256": "0d9af82e8951e60078f6a9f3a87fd8442e61a2def7028e79e7b94907f73894b7",
+      "size_bytes": 18097,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
