@@ -4,6 +4,12 @@ Canonical portfolio: [GitHub Pages](https://oleksiimamchuralx.github.io/portfoli
 Other previews or experimental hosts are not independent authorities for portfolio facts.
 Their content is not consumed by this build. No equivalence with an alternate host is asserted.
 
+The All Projects page also has curated, high-level descriptions of local and private work in
+`content/related_work.json`. This reviewed file is editorial content in the site repository;
+the build never reads private project repositories, workstation databases or runtime logs.
+Each description states its limited status. Only the two admitted public repositories supply
+source-linked verification cards and live demos.
+
 ```text
 Public project protected main (observed SHA)
   -> project.json + exact publication manifest + reviewed research

@@ -43,6 +43,9 @@ class Links(HTMLParser):
         self.urls=set()
 
     def handle_starttag(self,tag,attrs):
+        # A new page's canonical URL cannot return 200 until this build is deployed.
+        if tag=='link' and any(k=='rel' and 'canonical' in v.split() for k,v in attrs if v):
+            return
         for key,value in attrs:
             if key!='href' or not value or value.startswith(('data:','#')): continue
             if urlsplit(value).scheme or value.startswith('//'):

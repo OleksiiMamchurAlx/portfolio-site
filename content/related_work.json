@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-09-27",
+  "notice": "Curated project summaries. Local tests and archived evidence describe limited scopes; they do not establish production acceptance or paid employment.",
+  "projects": [
+    {
+      "id": "router-native",
+      "title": "Adaptive AI Router — Local Native Core",
+      "track": "Software & reliability",
+      "state": "Bounded local candidate",
+      "summary": "A local routing and validation core has a checked numeric workflow. Its installed runtime and broader planning behavior are separate from this candidate.",
+      "boundary": "The public browser demo documents a narrower online workflow; offline execution and production service recovery are not claimed."
+    },
+    {
+      "id": "aiq-publisher",
+      "title": "AIQ / Portfolio Publisher",
+      "track": "Private software & evidence control",
+      "state": "Private implementation; operational review open",
+      "summary": "A private control project tracks validation and publication evidence while separating internal operational data from public portfolio outputs.",
+      "boundary": "No private source, logs or internal links are published here. A limited public pipeline has evidence, while final acceptance of the active worker remains open."
+    },
+    {
+      "id": "unified-gateway",
+      "title": "Unified Engineering Gateway",
+      "track": "Local software integration",
+      "state": "Bounded local validation",
+      "summary": "A local bridge links a limited Router workflow with independent engineering validation and recovery records.",
+      "boundary": "A thermal example was checked locally. Model self-correction and active runtime deployment were not established."
+    },
+    {
+      "id": "me-aiq",
+      "title": "ME-AIQ / Evidence-Based Engineering Research",
+      "track": "Computational engineering research",
+      "state": "Local research; scope limited",
+      "summary": "Separate calculation and evidence experiments explore checked numerical engineering tasks and reproducible results.",
+      "boundary": "This research is not presented as paid IT employment, general engineering correctness or a production AI service."
+    },
+    {
+      "id": "portfolio",
+      "title": "Engineering Portfolio & Publication Checks",
+      "track": "Public software delivery",
+      "state": "Live, with reviewed source boundaries",
+      "summary": "This site builds a static portfolio from approved public project revisions and publishes a receipt describing the exact source inputs.",
+      "boundary": "Additional project summaries on this page are curated editorial content; the build never imports private control repositories or workstation databases."
+    },
+    {
+      "id": "voice-assistant",
+      "title": "Local Voice Assistant",
+      "track": "Local software prototype",
+      "state": "Partial",
+      "summary": "Local source includes voice command routing and a connection to a video cutting workflow.",
+      "boundary": "A current microphone and text-to-speech end-to-end acceptance run is not available."
+    },
+    {
+      "id": "video-cutter",
+      "title": "AI Video Cutter",
+      "track": "Local media automation prototype",
+      "state": "Partial",
+      "summary": "A local cutter component and command routing exist for a controlled video editing workflow.",
+      "boundary": "A full current run on a real large video has not been verified; no finished commercial editor is claimed."
+    },
+    {
+      "id": "immersive-combat",
+      "title": "ImmersiveCombat / Project Control Kernel",
+      "track": "Game prototype & project control",
+      "state": "Reproducible technical checkpoint",
+      "summary": "A local control kernel and Unreal greybox prototype preserve test and reproduction evidence.",
+      "boundary": "Camera and movement feel require the owner's assessment. Network combat and a finished game are not claimed."
+    },
+    {
+      "id": "stalker-fardetail",
+      "title": "STALKER 2 FarDetail Validation Package",
+      "track": "Graphics configuration experiment",
+      "state": "Historical local test package",
+      "summary": "Configuration, installation, hash checking and rollback were packaged for a local visual experiment.",
+      "boundary": "Current game files have drifted from the historical baseline. Visual quality, frame rate, neural renderer authorship and an owner-controlled video link remain unverified."
+    }
+  ]
+}
