@@ -77,6 +77,13 @@ class ExternalLinkTests(unittest.TestCase):
             self.assertIn(self.url,urls)
             self.assertIn(self.url+'/blob/'+site.read_cache('router')['source_commit']+'/docs/FUTURE_RD_METHOD.md',urls)
 
+    def test_new_page_canonical_url_is_not_probed_before_deployment(self):
+        with tempfile.TemporaryDirectory() as directory:
+            (Path(directory)/'index.html').write_text(
+                '<link rel="canonical" href="https://oleksiimamchuralx.github.io/portfolio-site/projects/">'
+                f'<a href="{self.url}">Source</a>', encoding='utf-8')
+            self.assertEqual(links.collect(directory), [self.url])
+
     def test_unapproved_rendered_link_prevents_any_probe(self):
         with tempfile.TemporaryDirectory() as directory,patch.object(links,'probe') as probe:
             (Path(directory)/'index.html').write_text('<a href="https://example.org/">fixture</a>')

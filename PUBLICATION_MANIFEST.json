@@ -54,8 +54,8 @@
     },
     {
       "path": "AGENTS.md",
-      "sha256": "61e3b9fab65003b65addd9ad7f26b4b2e4d5e172348493d7b70882bb4fdeb70a",
-      "size_bytes": 441,
+      "sha256": "d305e936ad30433440bf5b104e152535bea67a88a3be3d0b8c68c63085961a62",
+      "size_bytes": 562,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
@@ -64,8 +64,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "ba2081853c137527e9526f23d3ed0515fba616c964e3adcbabc80606627fddab",
-      "size_bytes": 2577,
+      "sha256": "f25c29dca2f469dfb0b561946781068466d356ec653aeed13b6419b1bd0fdea8",
+      "size_bytes": 3175,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
@@ -74,8 +74,8 @@
     },
     {
       "path": "SOURCE_OF_TRUTH.md",
-      "sha256": "a5afff842e304424dc2332dd67390a76b90b0ade3469d78e18ad0594466a45cc",
-      "size_bytes": 4697,
+      "sha256": "6c17787a4e5ade53e747b8dc6441e7daccf7952e35cec7c8c0e707e3def35ae3",
+      "size_bytes": 5117,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
@@ -104,8 +104,8 @@
     },
     {
       "path": "content/profile.json",
-      "sha256": "506b67d6585ae86bef96477af9783251e7032a81d7f07f87f2661111b591ebce",
-      "size_bytes": 593,
+      "sha256": "19d4945a529acd42736feab69ed4f7882ae3de541ecfe0a8067a46981dc28e71",
+      "size_bytes": 706,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
@@ -126,6 +126,16 @@
       "path": "content/projects/router.json",
       "sha256": "3df151ee758d6e61f45e7d9470c9c99d33dc8333ac8cac139ae26a66d6298ab1",
       "size_bytes": 3651,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
+      "path": "content/related_work.json",
+      "sha256": "5dcdca769237e5cc83bb57999ea72da9cfd8d3dd150dc4902897bfd509ed5a33",
+      "size_bytes": 4453,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
@@ -204,8 +214,8 @@
     },
     {
       "path": "tests/test_external_links.py",
-      "sha256": "1fb50740330827ee37ba15ccd0e7ccf14bc564d22d873217c5895c66d4c15c55",
-      "size_bytes": 4315,
+      "sha256": "65abb5a9951dd9d4399df5274a02beb08a1f4e869804966b7f100b85548e0d34",
+      "size_bytes": 4749,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
@@ -223,9 +233,19 @@
       "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
     },
     {
+      "path": "tests/test_review_server.py",
+      "sha256": "d9c41002c6d4ccfe4b1d4d0bec5db8d69c290023c90acb4c554eb1363a875d90",
+      "size_bytes": 1928,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
       "path": "tests/test_site.py",
-      "sha256": "eab80480d7f682414accdc7b38ef34973628d082493c39a579c00c040bd506e8",
-      "size_bytes": 6732,
+      "sha256": "37ef10dcf723db5a1b07c3dbc2cce3ea2bba8858521b76869ea287d9d09159a4",
+      "size_bytes": 7007,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
@@ -234,8 +254,8 @@
     },
     {
       "path": "tools/check.py",
-      "sha256": "cef52877edaf2d1b0fcdd5b685b5fdec5caec1e4f2f9748313831785f0e7d30b",
-      "size_bytes": 2658,
+      "sha256": "2aabe7e2b13fa0d2378fa13659d35a8a1879e3bc0d00b4406dc80ae353ede1da",
+      "size_bytes": 2741,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
@@ -244,8 +264,8 @@
     },
     {
       "path": "tools/external_links.py",
-      "sha256": "007aa8839f18f89234af7b72105234adfd3a1709fc4ab7a9b75678fb0d7ec85b",
-      "size_bytes": 3768,
+      "sha256": "acf512832c7ce100d3aefb4acae1aaf5c4851cecd0cf156610a93213f22ad9e9",
+      "size_bytes": 3965,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
@@ -283,9 +303,19 @@
       "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
     },
     {
+      "path": "tools/review_server.py",
+      "sha256": "bbbc359fef78a23d53f751888990140869c690d0580c6dbb1f21930eda7e281e",
+      "size_bytes": 4517,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
       "path": "tools/site.py",
-      "sha256": "0d9af82e8951e60078f6a9f3a87fd8442e61a2def7028e79e7b94907f73894b7",
-      "size_bytes": 18097,
+      "sha256": "5455bc54fcbd27e025ad7e3a2b7f9fe1aa9ad441bafb480b4b102ad5a7e41431",
+      "size_bytes": 20166,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",

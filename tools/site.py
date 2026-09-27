@@ -1,4 +1,4 @@
-"""Public GitHub-only static build. No private account credentials are read."""
+"""Static build from reviewed public sources and curated project summaries."""
 import argparse
 from datetime import datetime, timezone
 import hashlib
@@ -48,6 +48,24 @@ def registry():
 
 def project_repos():
     return {key:item['repository'] for key,item in registry()['projects'].items()}
+
+def related_work():
+    """Read editorial summaries only; never connect to a private project source."""
+    value=read(ROOT/'content/related_work.json')
+    if (set(value)!={'schema_version','reviewed_at','notice','projects'}
+            or value['schema_version']!=1 or not isinstance(value['projects'],list)):
+        raise Blocked('RELATED_WORK_SCHEMA')
+    ids=set()
+    for item in value['projects']:
+        if (not isinstance(item,dict)
+                or set(item)!={'id','title','track','state','summary','boundary'}
+                or not all(isinstance(v,str) and v.strip() for v in item.values())
+                or not re.fullmatch('[a-z][a-z0-9-]*',item['id'])
+                or item['id'] in ids):
+            raise Blocked('RELATED_WORK_ENTRY')
+        ids.add(item['id'])
+    scan('related_work.json',canonical(value))
+    return value
 
 def read_cache(project):
     if project not in project_repos(): raise Blocked('SOURCE_REPO_DENIED')
@@ -143,8 +161,10 @@ def render(records, destination, site_commit='local-preview', demo_assets=None):
         demo_provenance = verify_bundle(read(ROOT/'policies/router.json'), demo_assets)
         demo_provenance['source_commit'] = router['source_commit']
     profile=read(ROOT/'content/profile.json'); experience=read(ROOT/'content/experience.json')
+    skills=read(ROOT/'content/skills.json')
+    curated=related_work()
     e=lambda x:html.escape(str(x),quote=True)
-    nav=[('','Overview'),('reliability/','Reliability'),('qa/','QA'),('systems/','Systems'),('graphics/','Graphics R&D'),('evidence/','Evidence'),('about/','About'),('contact/','Contact')]
+    nav=[('','Overview'),('projects/','All Projects'),('reliability/','Reliability'),('qa/','QA'),('systems/','Systems'),('graphics/','Graphics R&D'),('evidence/','Evidence'),('about/','About'),('contact/','Contact')]
     links=''.join(f'<a href="{BASE}{p}">{e(n)}</a>' for p,n in nav)
     def card(r):
         p=r['project']; v=p['verification']; repo='https://github.com/'+r['source_repository']
@@ -173,9 +193,18 @@ def render(records, destination, site_commit='local-preview', demo_assets=None):
             proof=repo+'/blob/'+r['source_commit']+'/'+item['evidence_links'][0]
             sections.append(f'<section class="note" aria-labelledby="future-rd"><h2 id="future-rd">Future Automation R&amp;D</h2><h3>{e(item["title"])}</h3><p><strong>{e(item["status"])}</strong></p><p>{e(item["summary"])}</p><p>{e(item["role"])}</p><p><a href="{e(proof)}">Planning evidence and method</a> · Summary updated {e(item["updated_at"])}</p><details><summary>Scope, AI use and limitations</summary><p>{e(item["ai_disclosure"])}</p><ul>'+''.join('<li>'+e(s)+'</li>' for s in item['limitations'])+'</ul></details></section>')
         return ''.join(sections)
-    overview=f'<section class="hero"><p class="eyebrow">{e(profile["location"])}</p><h1>Reliable work.<br>Visible evidence.</h1><p class="lead">{e(profile["headline"])}</p><p>{e(profile["summary"])}</p><a class="cta" href="{BASE}evidence/">Explore the evidence</a></section><section class="projects">{all_cards}</section>'
+    overview=f'<section class="hero"><p class="eyebrow">{e(profile["location"])}</p><h1>Reliable work.<br>Visible evidence.</h1><p class="lead">{e(profile["headline"])}</p><p>{e(profile["summary"])}</p><a class="cta" href="{BASE}projects/">Explore all projects</a></section><h2>Public source and demos</h2><section class="projects">{all_cards}</section><p><a href="{BASE}projects/">See local prototypes and research with their current status</a></p>'
     pages={'':('Engineering portfolio',overview)}
-    for lens in read(ROOT/'content/skills.json')['lenses']:
+    curated_cards=''.join(f'''<article class="project"><p class="eyebrow">{e(p['track'])}</p>
+<h2>{e(p['title'])}</h2><p class="project-status">{e(p['state'])}</p>
+<p>{e(p['summary'])}</p><details><summary>Scope and limits</summary><p>{e(p['boundary'])}</p></details></article>'''
+        for p in curated['projects'])
+    pages['projects']=('All projects',f'''<h1>Projects and research</h1>
+<p>Public source and live demonstrations appear first. Local and private work is summarized below with its review status; no private code or operational data is included.</p>
+<h2>Public source and demos</h2><section class="projects">{all_cards}</section>
+<h2>Local projects and research</h2><p class="note">{e(curated['notice'])} Reviewed {e(curated['reviewed_at'])}.</p>
+<section class="projects">{curated_cards}</section>''')
+    for lens in skills['lenses']:
         cards=''.join(card(r) for r in records if set(r['project']['category'])&set(lens['tags']))
         extra='<p>Prior professional support background is separate from controlled project evidence.</p>' if lens['id']=='systems' else ''
         research=research_section() if lens['id'] in {'reliability','qa'} else ''
@@ -196,8 +225,9 @@ def render(records, destination, site_commit='local-preview', demo_assets=None):
     for slug,(title,body) in pages.items():
         target=destination/slug/'index.html'; target.parent.mkdir(parents=True,exist_ok=True)
         target.write_text(f'''<!doctype html><html lang="en"><head><link rel="canonical" href="{CANONICAL_URL}{slug+'/' if slug else ''}"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)} — Oleksii Mamchur</title><meta name="description" content="Evidence-driven automation, QA and systems diagnostics portfolio."><link rel="stylesheet" href="{BASE}style.css"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315243c'/%3E%3Ctext x='5' y='23' fill='white' font-size='21'%3EOM%3C/text%3E%3C/svg%3E"></head><body><a class="skip" href="#main">Skip to content</a><header><a class="brand" href="{BASE}">OM<span>Oleksii Mamchur</span></a><nav aria-label="Main navigation">{links}</nav></header><main id="main">{body}</main><footer>Independent projects. AI-assisted engineering. Evidence before claims.<br><a href="{BASE}receipt.json">Build and source receipt</a></footer></body></html>''',encoding='utf-8')
-    content_hash=digest(canonical(records))
-    receipt={'schema':1,'site_commit':site_commit,'sources':{r['project']['project_id']:{'commit':r['source_commit'],'manifest_sha256':r['manifest_sha256'],'verified_at':r['project']['verification']['verified_at']} for r in records},'content_hash':content_hash,'built_at':datetime.now(timezone.utc).isoformat()}
+    content_hash=digest(canonical({'public_records':records,'curated_projects':curated,
+                                   'profile':profile,'experience':experience,'skills':skills}))
+    receipt={'schema':1,'site_commit':site_commit,'sources':{r['project']['project_id']:{'commit':r['source_commit'],'manifest_sha256':r['manifest_sha256'],'verified_at':r['project']['verification']['verified_at']} for r in records},'content_hash':content_hash,'curated_projects_sha256':digest(canonical(curated)),'built_at':datetime.now(timezone.utc).isoformat()}
     if demo_provenance is not None:
         receipt['reviewed_demo'] = demo_provenance
     write(destination/'receipt.json',receipt)

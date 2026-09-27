@@ -5,7 +5,7 @@ One factual core, four views: Reliability & Automation, QA & Testing, Systems & 
 Canonical portfolio: [GitHub Pages](https://oleksiimamchuralx.github.io/portfolio-site/).
 See [Source of Truth](SOURCE_OF_TRUTH.md) and the reviewed [portfolio registry](portfolio_registry.json).
 
-The static site reads only two public repositories, checks their exact trees and publication manifests against reviewed policy, then renders source-linked evidence. It never reads private control data or a workstation database. New claims or changed reviewed source hashes stop sync until policy review.
+The static site reads only two public repositories, checks their exact trees and publication manifests against reviewed policy, then renders source-linked evidence. A separate reviewed editorial file summarizes other local projects without importing private source or a workstation database. New claims or changed reviewed source hashes stop sync until policy review.
 
 ## Run safely
 
@@ -16,6 +16,14 @@ python tools/site.py
 python -m unittest discover -s tests -v
 python tools/site.py --sync
 ```
+
+For a local review of a completed build, serve a fresh `dist` directory with
+`python tools/review_server.py`. It binds to loopback only and serves one
+in-memory snapshot of reviewed page assets. GET and HEAD are available; uploads,
+form submissions and directory listings are refused. Restart after a rebuild.
+Visitors can still save any page or source file their browser receives; a
+public website cannot technically prevent that. Internet access needs a
+separately configured HTTPS ingress and an explicit network access decision.
 
 The first command builds a labelled, potentially stale cache for offline preview. It is not the live authority. Sync resolves protected public main, downloads only allowlisted public files and never executes downloaded code. Live reconciliation requires sync and cannot use cache/frozen fallback. Serve `dist` under `/portfolio-site/` to match GitHub Pages paths.
 

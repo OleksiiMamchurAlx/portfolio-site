@@ -24,9 +24,13 @@ class SiteTests(unittest.TestCase):
     def test_build_and_links(self):
         with tempfile.TemporaryDirectory() as d:
             receipt=site.render(self.records,Path(d))
-            self.assertEqual(len(list(Path(d).rglob('index.html'))),8)
+            self.assertEqual(len(list(Path(d).rglob('index.html'))),9)
             site.check_links(Path(d))
             self.assertEqual(receipt['sources']['router']['verified_at'],self.records[0]['project']['verification']['verified_at'])
+            projects=(Path(d)/'projects/index.html').read_text(encoding='utf-8')
+            self.assertIn('AIQ / Portfolio Publisher',projects)
+            self.assertIn('Computational engineering research',projects)
+            self.assertNotIn('private/control',projects)
     def test_failed_build_preserves_previous_output(self):
         with tempfile.TemporaryDirectory() as d:
             out=Path(d);site.render(self.records,out);old=(out/'index.html').read_bytes()
