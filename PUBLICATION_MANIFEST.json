@@ -134,8 +134,8 @@
     },
     {
       "path": "content/related_work.json",
-      "sha256": "5dcdca769237e5cc83bb57999ea72da9cfd8d3dd150dc4902897bfd509ed5a33",
-      "size_bytes": 4453,
+      "sha256": "f76a0031cbcd20fd9bda20d233ba16c1ed79f5280cc92464dea3d8623fdb0e4a",
+      "size_bytes": 4494,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
