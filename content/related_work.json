@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_at": "2026-09-27",
+  "reviewed_at": "2026-09-28",
   "notice": "Curated project summaries. Local tests and archived evidence describe limited scopes; they do not establish production acceptance or paid employment.",
   "projects": [
     {
@@ -15,9 +15,9 @@
       "id": "aiq-publisher",
       "title": "AIQ / Portfolio Publisher",
       "track": "Private software & evidence control",
-      "state": "Private implementation; operational review open",
-      "summary": "A private control project tracks validation and publication evidence while separating internal operational data from public portfolio outputs.",
-      "boundary": "No private source, logs or internal links are published here. A limited public pipeline has evidence, while final acceptance of the active worker remains open."
+      "state": "Private implementation; recovery smoke in progress",
+      "summary": "A separately versioned local Publisher resumed bounded cycles after a preserved recovery cutoff. One fresh Router result was independently checked and recorded in AIQ.",
+      "boundary": "The checked result was a simple arithmetic probe. Long observation and final worker acceptance remain pending. No private source, logs or internal links are published here."
     },
     {
       "id": "unified-gateway",
