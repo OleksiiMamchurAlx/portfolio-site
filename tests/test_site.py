@@ -4,18 +4,41 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+import io
 from unittest.mock import patch
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
 import importlib.util
 spec=importlib.util.spec_from_file_location('portfolio_site',Path(__file__).resolve().parents[1]/'tools/site.py')
 site=importlib.util.module_from_spec(spec);spec.loader.exec_module(site)
 from publication_guard import Blocked,scan
+import smoke
 
 class SiteTests(unittest.TestCase):
     def setUp(self):
         self.records=[site.read_cache(k) for k in site.project_repos()]
     def test_valid_schema(self):
         for r in self.records: site.validate_record(r)
+
+    def test_live_smoke_accepts_exact_current_artifact_without_old_slogan(self):
+        with tempfile.TemporaryDirectory() as d:
+            out=Path(d);receipt=site.render(self.records,out,'a'*40)
+            home=(out/'index.html').read_bytes()
+            self.assertNotIn(b'Reliable work.',home)
+            with patch.object(smoke,'urlopen',side_effect=[io.BytesIO(json.dumps(receipt).encode()),io.BytesIO(home)]):
+                self.assertEqual(smoke.verify(site.CANONICAL_URL,receipt,home)['status'],'PASS')
+
+    def test_live_smoke_rejects_wrong_receipt_and_corrupt_homepage(self):
+        url=site.CANONICAL_URL;expected={'site_commit':'a'*40};home=b'<h1>Verified fixture</h1>'
+        with patch.object(smoke,'urlopen',return_value=io.BytesIO(b'{}')):
+            with self.assertRaisesRegex(ValueError,'DEPLOY_RECEIPT_MISMATCH'): smoke.verify(url,expected,home)
+        with patch.object(smoke,'urlopen',side_effect=[io.BytesIO(json.dumps(expected).encode()),io.BytesIO(home+b'x')]):
+            with self.assertRaisesRegex(ValueError,'DEPLOY_HOMEPAGE_MISMATCH'): smoke.verify(url,expected,home)
+
+    def test_live_smoke_rejects_prefix_lookalike_origin_and_query(self):
+        for url in [site.CANONICAL_URL.rstrip('/')+'-other/',site.CANONICAL_URL+'?version=old','https://oleksiimamchuralx.github.io.evil.test/portfolio-site/']:
+            with patch.object(smoke,'urlopen') as fetch:
+                with self.assertRaisesRegex(ValueError,'UNEXPECTED_PAGES_ORIGIN'): smoke.verify(url,{},b'')
+                fetch.assert_not_called()
     def test_unreviewed_claim(self):
         bad=copy.deepcopy(self.records[0]);bad['project']['skills_demonstrated'].append('Unverified expert')
         with self.assertRaises(Blocked): site.validate_record(bad)
