@@ -254,8 +254,8 @@
     },
     {
       "path": "tests/test_site.py",
-      "sha256": "4777777553dc677cbe0559a5038cfd63e75fd78a4c1b6eabd2f3b27450a2bd32",
-      "size_bytes": 8770,
+      "sha256": "09b2475a8dbde317e477dffb1015b132830ac8a8955d7710b1f552ee3ec98bfb",
+      "size_bytes": 10346,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
@@ -334,8 +334,8 @@
     },
     {
       "path": "tools/smoke.py",
-      "sha256": "4d35077e202cf6a4e7382d1239fed835afabd5330e93796fdd6506ca83032a4d",
-      "size_bytes": 1180,
+      "sha256": "1c0042971312f4356cb97c25e3ae15aa641e13d90ef48be45dc07f6479177c05",
+      "size_bytes": 1388,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
