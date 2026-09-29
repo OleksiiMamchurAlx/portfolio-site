@@ -7,6 +7,12 @@ See [Source of Truth](SOURCE_OF_TRUTH.md) and the reviewed [portfolio registry](
 
 The static site reads only two public repositories, checks their exact trees and publication manifests against reviewed policy, then renders source-linked evidence. A separate reviewed editorial file summarizes other local projects without importing private source or a workstation database. New claims or changed reviewed source hashes stop sync until policy review.
 
+The graphics configuration case uses a reviewed, sanitized summary in
+`content/cases/graphics-validation.json`. It preserves saved-input fingerprints,
+comparison scope and historical-test limits. It contains no installer, game asset,
+private path or third-party binary. Its digest is included in the site receipt;
+it is editorial evidence, not a third automated source repository.
+
 ## Run safely
 
 Python 3.11, standard library only:

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_at": "2026-09-28",
+  "reviewed_at": "2026-09-29",
   "notice": "Curated project summaries. Local tests and archived evidence describe limited scopes; they do not establish production acceptance or paid employment.",
   "projects": [
     {
@@ -15,9 +15,9 @@
       "id": "aiq-publisher",
       "title": "AIQ / Portfolio Publisher",
       "track": "Private software & evidence control",
-      "state": "Private implementation; recovery smoke in progress",
-      "summary": "A separately versioned local Publisher resumed bounded cycles after a preserved recovery cutoff. One fresh Router result was independently checked and recorded in AIQ.",
-      "boundary": "The checked result was a simple arithmetic probe. Long observation and final worker acceptance remain pending. No private source, logs or internal links are published here."
+      "state": "Private implementation; final runtime acceptance pending",
+      "summary": "A local Publisher has recorded recovery and a short functional check, with independently recorded delivery evidence.",
+      "boundary": "The current observation campaign has not completed final native runtime acceptance. A running worker and successful short checks do not establish long-term reliability. No private source, logs or internal links are published here."
     },
     {
       "id": "unified-gateway",
@@ -32,8 +32,8 @@
       "title": "ME-AIQ / Evidence-Based Engineering Research",
       "track": "Computational engineering research",
       "state": "Local research; scope limited",
-      "summary": "Separate calculation and evidence experiments explore checked numerical engineering tasks and reproducible results.",
-      "boundary": "This research is not presented as paid IT employment, general engineering correctness or a production AI service."
+      "summary": "Local synthetic numerical experiments compare expected outcomes with CPU and CUDA results, preserving both correctness checks and performance limits.",
+      "boundary": "In the recorded host-specific comparisons, CUDA was correct but did not beat the best CPU result. Synthetic calculations do not establish physical material behavior, general engineering correctness or a production AI service."
     },
     {
       "id": "portfolio",
@@ -63,17 +63,17 @@
       "id": "immersive-combat",
       "title": "ImmersiveCombat / Project Control Kernel",
       "track": "Game prototype & project control",
-      "state": "Reproducible technical checkpoint",
+      "state": "Technical checkpoint; human assessment pending",
       "summary": "A local control kernel and Unreal greybox prototype preserve test and reproduction evidence.",
-      "boundary": "Camera and movement feel require the owner's assessment. Network combat and a finished game are not claimed."
+      "boundary": "The current checkpoint still requires the owner to assess camera and movement. Kernel checks do not prove combat, network play or a finished game."
     },
     {
       "id": "stalker-fardetail",
       "title": "STALKER 2 FarDetail Validation Package",
       "track": "Graphics configuration experiment",
-      "state": "Historical local test package",
-      "summary": "Configuration, installation, hash checking and rollback were packaged for a local visual experiment.",
-      "boundary": "Current game files have drifted from the historical baseline. Visual quality, frame rate, neural renderer authorship and an owner-controlled video link remain unverified."
+      "state": "Saved configuration and evidence rechecked",
+      "summary": "A saved-profile comparison found 27 changed and 305 unchanged settings. Package and archived evidence hashes were reconciled in a read-only audit.",
+      "boundary": "These are saved-file observations. Historical installer scenarios do not establish transactional restore; current rendering, image quality and performance remain unverified. No game binaries or images are distributed."
     }
   ]
 }

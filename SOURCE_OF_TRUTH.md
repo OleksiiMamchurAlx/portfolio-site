@@ -10,6 +10,12 @@ the build never reads private project repositories, workstation databases or run
 Each description states its limited status. Only the two admitted public repositories supply
 source-linked verification cards and live demos.
 
+`content/cases/graphics-validation.json` is a separately reviewed derived case summary.
+Saved-input and source-record hashes identify a bounded local audit; they do not make
+the private records publicly reproducible. Historical test records stay labelled as
+historical. The build copies only this sanitized summary and includes its canonical
+JSON digest in the public receipt. No workstation files are accessed by the build.
+
 ```text
 Public project protected main (observed SHA)
   -> project.json + exact publication manifest + reviewed research
@@ -77,6 +83,7 @@ Pages path. It deduplicates links, bounds time/retries, and validates redirects 
 following them. Unexpected hosts, credential-bearing URLs, encoded/traversal paths,
 HTTP failures and unavailable transport fail the check, not silently pass.
 It checks reachability/status, not factual accuracy or every fragment anchor.
+
 
 ```text
 python tools/check.py

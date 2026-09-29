@@ -4,6 +4,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
 import importlib.util
 spec=importlib.util.spec_from_file_location('portfolio_site',Path(__file__).resolve().parents[1]/'tools/site.py')
@@ -24,13 +25,39 @@ class SiteTests(unittest.TestCase):
     def test_build_and_links(self):
         with tempfile.TemporaryDirectory() as d:
             receipt=site.render(self.records,Path(d))
-            self.assertEqual(len(list(Path(d).rglob('index.html'))),9)
+            self.assertEqual(len(list(Path(d).rglob('index.html'))),10)
             site.check_links(Path(d))
             self.assertEqual(receipt['sources']['router']['verified_at'],self.records[0]['project']['verification']['verified_at'])
             projects=(Path(d)/'projects/index.html').read_text(encoding='utf-8')
             self.assertIn('AIQ / Portfolio Publisher',projects)
             self.assertIn('Computational engineering research',projects)
             self.assertNotIn('private/control',projects)
+            self.assertIn('cases/graphics-configuration-validation/',projects)
+
+    def test_graphics_case_keeps_private_evidence_and_live_claims_separate(self):
+        with tempfile.TemporaryDirectory() as d:
+            out=Path(d); receipt=site.render(self.records,out)
+            case=json.loads((out/'cases/graphics-configuration-validation/evidence.json').read_text())
+            self.assertFalse(case['verification']['historical_function_tests_rerun'])
+            self.assertEqual(case['comparison']['scope'],'Saved INI keys and values only; no runtime load or image-quality inference.')
+            self.assertEqual(receipt['graphics_case_sha256'],site.digest(site.canonical(case)))
+            for source in case['source_records']:
+                self.assertEqual(set(source),{'label','sha256'})
+            page=(out/'cases/graphics-configuration-validation/index.html').read_text(encoding='utf-8')
+            self.assertIn('not rerun in this audit',page)
+            self.assertIn('transactional recovery are not established',page)
+            self.assertIn('Source-record fingerprints',page)
+            self.assertNotIn('nvngx_',page)
+
+    def test_graphics_case_rejects_extra_private_fields_and_boolean_counts(self):
+        original=site.graphics_case(); real_read=site.read
+        for field,value in [('private_source','private/control'),('comparison',dict(original['comparison'],changed=True))]:
+            bad=copy.deepcopy(original);bad[field]=value
+            def read_case(path):
+                return bad if path.name=='graphics-validation.json' else real_read(path)
+            with patch.object(site,'read',side_effect=read_case),self.assertRaises(Blocked):
+                site.graphics_case()
+
     def test_failed_build_preserves_previous_output(self):
         with tempfile.TemporaryDirectory() as d:
             out=Path(d);site.render(self.records,out);old=(out/'index.html').read_bytes()
