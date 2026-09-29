@@ -164,8 +164,8 @@
     },
     {
       "path": "policies/router.json",
-      "sha256": "dc5c1d9ded7afdc88594c7cceff4311050b20ad272d5fafe1f2d0b5025cd62ef",
-      "size_bytes": 8054,
+      "sha256": "372824ae8658c3f50763ac9e8e2ce33f820bb22b7d6707a2a3ea43ae8d2a55b9",
+      "size_bytes": 8176,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
