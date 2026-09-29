@@ -7,7 +7,7 @@ from publication_guard import scan,digest,Blocked
 
 ROOT=Path(__file__).resolve().parents[1]
 ALLOW={'.gitattributes','.gitignore','AGENTS.md','README.md','PUBLICATION_MANIFEST.json',
-       'assets/style.css','content/profile.json','content/experience.json','content/skills.json','content/related_work.json','portfolio_registry.json','SOURCE_OF_TRUTH.md',
+       'assets/style.css','content/profile.json','content/experience.json','content/skills.json','content/related_work.json','content/cases/graphics-validation.json','portfolio_registry.json','SOURCE_OF_TRUTH.md',
        'content/projects/router.json','content/projects/graphics.json','policies/router.json','policies/graphics.json',
        'schemas/content.schema.json','schemas/registry.schema.json','tools/publication_guard.py','tools/site.py','tools/check.py','tools/preview.py','tools/review_server.py',
        'tools/external_links.py','tools/native_demo.py','tests/test_authority.py','tests/test_external_links.py','tests/test_native_demo_integration.py',

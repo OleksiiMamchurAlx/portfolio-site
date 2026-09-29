@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "graphics-configuration-validation",
+  "title": "Graphics configuration validation",
+  "reviewed_at": "2026-09-29",
+  "summary": "A saved-profile comparison and package-integrity study for a Windows graphics experiment. The result separates configuration changes, recorded tests and live rendering acceptance.",
+  "ownership": "Project owner; AI-assisted tooling, investigation, testing and documentation. No authorship of upstream rendering technology is claimed.",
+  "method": [
+    "Pin saved inputs with SHA-256 before comparing them.",
+    "Compare parsed INI keys and values, keeping changed and unchanged settings separate.",
+    "Reconcile saved evidence and package members against recorded hashes.",
+    "Retain historical test records and unresolved runtime and recovery limits."
+  ],
+  "profiles": [
+    {
+      "id": "baseline",
+      "label": "Beta 1.4 Normal.ini",
+      "sha256": "1529a8ed51d55d63b7fb7dbb067e3af194786c9e0c83ce96c26cb6042dd4b3c9"
+    },
+    {
+      "id": "variant",
+      "label": "Beta 1.5 Normal.ini",
+      "sha256": "1b5f57305c34be21d1461177ff468153d17e0a40b0238c1d52f307289e37175a"
+    },
+    {
+      "id": "diagnostic",
+      "label": "Beta 1.5 Split.ini",
+      "sha256": "a7fb609fe7e2a32ea2b48cd8f5382a93c3e942cb5aeae6174c602894d9e14cfc"
+    }
+  ],
+  "comparison": {
+    "changed": 27,
+    "diagnostic_unchanged": 329,
+    "unchanged": 305,
+    "scope": "Saved INI keys and values only; no runtime load or image-quality inference.",
+    "diagnostic_changed": 3
+  },
+  "verification": {
+    "scope": "Read-only local hash reconciliation and independent semantic comparison. Test counts describe preserved earlier logs, not a new test run.",
+    "historical_function_tests_rerun": false,
+    "receipt_members_expected": 15,
+    "archive_members_matched": 16,
+    "package_members_expected": 16,
+    "archive_members_expected": 16,
+    "receipt_members_matched": 15,
+    "observed_at": "2026-09-29T17:20:02.699071-04:00",
+    "package_members_matched": 16,
+    "historical_installer_shells": 2,
+    "historical_installer_cases": 4,
+    "historical_function_tests": 16
+  },
+  "source_records": [
+    {
+      "sha256": "4d4ca107e997a5ce9de07cebd37b10903f8985f3133cd0f736ecd76605c1b756",
+      "label": "Saved-profile comparison receipt"
+    },
+    {
+      "sha256": "e013d17091bd1323e8a3d5a5616de1c956947fc9829fd08d144dc91ad8d513e3",
+      "label": "Saved-profile comparison result"
+    },
+    {
+      "sha256": "36e3361919c9608773ec3ca57d9d6035977dc0da028075c98b6efdc5537e74d2",
+      "label": "Historical FunctionPlan test log"
+    },
+    {
+      "sha256": "36a75cc43286067f26baa3cea4282a7623bc857b7eee11c9fa3c997af57cc1ec",
+      "label": "PowerShell 7 installer scenario record"
+    },
+    {
+      "sha256": "b75c0364ea767617f02a0781591439af3c5955a2f8e9f6307eb7c836376ded2c",
+      "label": "Windows PowerShell 5.1 installer scenario record"
+    }
+  ],
+  "limits": [
+    "Saved configuration equality does not prove that a game or rendering runtime loaded the settings.",
+    "No current controlled performance capture, accepted image-quality comparison or verified final-build FPS is provided.",
+    "Installer scenarios are historical. Complete backup validation before every restore write and transactional recovery are not established.",
+    "Source-record hashes identify preserved private records; their full contents and the original installer are not reproduced here.",
+    "This page distributes no game assets, screenshots, third-party binaries, model weights or renderer implementation.",
+    "No DLSS port, NVIDIA affiliation, binary authenticity or production reliability claim is made."
+  ],
+  "hiring_relevance": [
+    "QA: define expected results, compare versions and preserve negative or unresolved outcomes.",
+    "IT Support: verify file identity and configuration drift before interpreting a successful operation.",
+    "Automation: produce structured results with explicit evidence boundaries."
+  ],
+  "public_evidence_status": "Sanitized derived summary; saved private records are not independently reproducible from this page."
+}
