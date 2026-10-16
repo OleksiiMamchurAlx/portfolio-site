@@ -163,6 +163,16 @@
       "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
     },
     {
+      "path": "policies/edge-start-privacy.md",
+      "sha256": "da38af3c408be3195c8bdeb88df4346a9f4d6bb913fd13f32597276bdbd57452",
+      "size_bytes": 2862,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXTENSION_PRIVACY_POLICY",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
       "path": "policies/graphics.json",
       "sha256": "bdf0f9f9ef60e11407fe653fe6bcb8629697ff26a617f939ba3e9d1f474621f6",
       "size_bytes": 3197,
@@ -264,8 +274,8 @@
     },
     {
       "path": "tools/check.py",
-      "sha256": "55fb9a3856e119f9e8acad9bea0ffb65f1191b5066ef4954ced56e4f32b9d4b1",
-      "size_bytes": 2782,
+      "sha256": "44b11b95000b9113a1338a47693cfec9a539d00766d9d291ed0dc3671a245fa3",
+      "size_bytes": 2888,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
