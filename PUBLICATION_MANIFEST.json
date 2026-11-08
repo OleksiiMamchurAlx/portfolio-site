@@ -134,7 +134,7 @@
     },
     {
       "path": "content/projects/router.json",
-      "sha256": "987701b2deaca44f4cf57db282d06ee550c774e1cb99537a4ed2108e39ec2ca3",
+      "sha256": "220178f4193e8b0b8b65168bddef3a9d46d3faa397ae993f974ce6e6d0629e52",
       "size_bytes": 3651,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
@@ -174,8 +174,8 @@
     },
     {
       "path": "policies/router.json",
-      "sha256": "372824ae8658c3f50763ac9e8e2ce33f820bb22b7d6707a2a3ea43ae8d2a55b9",
-      "size_bytes": 8176,
+      "sha256": "236f67c6955e72cf0ed5e2f3f297a0f19c9c5d0680513b923cb4d2dd4a993289",
+      "size_bytes": 9364,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
@@ -184,7 +184,7 @@
     },
     {
       "path": "portfolio_registry.json",
-      "sha256": "8f865480282a2b15ca1cf2dd9346d92d511c0809cbf2b7ea65b1e09abb9c8bc6",
+      "sha256": "5fee20c5d10165b91451d5aa66c2bd48b5608a292f2fed1aeed42012f39d5589",
       "size_bytes": 512,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
