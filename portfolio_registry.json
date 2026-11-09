@@ -5,7 +5,7 @@
     "router": {
       "repository": "OleksiiMamchurAlx/adaptive-ai-router-demo",
       "tracking": "protected-main",
-      "fallback_commit": "ad4de24f1d694d1bb4bd3f0201ec00e488873804"
+      "fallback_commit": "a4f7c590a21f9fbb1ba10911b1f2215a9c626dba"
     },
     "graphics": {
       "repository": "OleksiiMamchurAlx/graphics-installer-validation",
