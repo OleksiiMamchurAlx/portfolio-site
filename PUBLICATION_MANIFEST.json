@@ -93,6 +93,16 @@
       "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
     },
     {
+      "path": "content/cases/frame-diagnostics-references.md",
+      "sha256": "090076b6d7d918cc8373637ae5e039eeca60e803a982e8d025c554845e1cd156",
+      "size_bytes": 1022,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
       "path": "content/cases/graphics-validation.json",
       "sha256": "80c3bde003d6395e8fea12dbb3dc427e3786e068fd13ac9fcd240201044fc5cf",
       "size_bytes": 4127,
@@ -104,8 +114,8 @@
     },
     {
       "path": "content/cases/router-windows.html",
-      "sha256": "42b35f5a3d8a78f35b1b77161c56af23a9eebea3712bf25e03a7c0b330513f07",
-      "size_bytes": 5260,
+      "sha256": "6ad091edb5856620d5dc2ae6e481b86c83175d77244d4cfa1e34627f6ea1d15a",
+      "size_bytes": 10371,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
@@ -274,8 +284,8 @@
     },
     {
       "path": "tools/check.py",
-      "sha256": "bbe26de52f26d5b584407007ed295ce491eeac163201e57c436f647d873d804c",
-      "size_bytes": 2818,
+      "sha256": "d66246dd33fe89dbad69ab21ee42d448712e8c8766721b7fb8030c0f343da2ab",
+      "size_bytes": 2866,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
