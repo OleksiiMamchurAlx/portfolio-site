@@ -253,6 +253,7 @@ def render(records, destination, site_commit='local-preview', demo_assets=None):
         for p in curated['projects'])
     pages['projects']=('All projects',f'''<h1>Projects and research</h1>
 <p>Public source and live demonstrations appear first. Local and private work is summarized below with its review status; no private code or operational data is included.</p>
+<p><a href="{BASE}cases/router-windows-diagnostics/">Adaptive AI Router: Windows diagnostics and VM verification</a></p>
 <h2>Public source and demos</h2><section class="projects">{all_cards}</section>
 <h2>Local projects and research</h2><p class="note">{e(curated['notice'])} Reviewed {e(curated['reviewed_at'])}.</p>
 <section class="projects">{curated_cards}</section>''')
@@ -284,6 +285,10 @@ def render(records, destination, site_commit='local-preview', demo_assets=None):
         raise Blocked('STALE_DEMO_OUTPUT')
     destination.mkdir(parents=True,exist_ok=True)
     write(destination/'cases/graphics-configuration-validation/evidence.json',graphics)
+    windows_case = (ROOT / 'content/cases/router-windows.html').read_bytes()
+    windows_path = destination / 'cases/router-windows-diagnostics/index.html'
+    windows_path.parent.mkdir(parents=True, exist_ok=True)
+    windows_path.write_bytes(windows_case)
     if demo_assets is not None:
         for name, data in demo_assets.items():
             target = destination / 'router-demo' / name.removeprefix('web/')
@@ -299,6 +304,7 @@ def render(records, destination, site_commit='local-preview', demo_assets=None):
                                    'graphics_case':graphics}))
     receipt={'schema':1,'site_commit':site_commit,'sources':{r['project']['project_id']:{'commit':r['source_commit'],'manifest_sha256':r['manifest_sha256'],'verified_at':r['project']['verification']['verified_at']} for r in records},'content_hash':content_hash,'curated_projects_sha256':digest(canonical(curated)),'built_at':datetime.now(timezone.utc).isoformat()}
     receipt['graphics_case_sha256']=digest(canonical(graphics))
+    receipt['router_windows_case_sha256']=digest(windows_case)
     if demo_provenance is not None:
         receipt['reviewed_demo'] = demo_provenance
     write(destination/'receipt.json',receipt)
