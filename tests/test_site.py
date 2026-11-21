@@ -48,7 +48,11 @@ class SiteTests(unittest.TestCase):
     def test_build_and_links(self):
         with tempfile.TemporaryDirectory() as d:
             receipt=site.render(self.records,Path(d))
-            self.assertEqual(len(list(Path(d).rglob('index.html'))),10)
+            self.assertEqual(len(list(Path(d).rglob('index.html'))),11)
+            route = 'cases/router-windows-diagnostics/'
+            case = (Path(d) / route / 'index.html').read_bytes()
+            self.assertEqual(receipt['router_windows_case_sha256'], site.digest(case))
+            self.assertIn(site.BASE + route, (Path(d) / 'projects/index.html').read_text(encoding='utf-8'))
             site.check_links(Path(d))
             self.assertEqual(receipt['sources']['router']['verified_at'],self.records[0]['project']['verification']['verified_at'])
             projects=(Path(d)/'projects/index.html').read_text(encoding='utf-8')

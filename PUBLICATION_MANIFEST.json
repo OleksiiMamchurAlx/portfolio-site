@@ -103,6 +103,16 @@
       "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
     },
     {
+      "path": "content/cases/router-windows.html",
+      "sha256": "42b35f5a3d8a78f35b1b77161c56af23a9eebea3712bf25e03a7c0b330513f07",
+      "size_bytes": 5260,
+      "source_artifact": "REVIEWED-PUBLIC-SITE",
+      "sanitization_status": "SCAN_PASS",
+      "verification_status": "SOURCE_REVIEWED",
+      "claim_category": "EXISTING_VERIFIED_PORTFOLIO",
+      "rights_note": "Owner-authored AI-assisted code; existing project rights retained"
+    },
+    {
       "path": "content/experience.json",
       "sha256": "1333181f9229627875e6704c8015cb76645fa7ae6ae4d8fabc26fd0ffe23fdb6",
       "size_bytes": 571,
@@ -254,8 +264,8 @@
     },
     {
       "path": "tests/test_site.py",
-      "sha256": "09b2475a8dbde317e477dffb1015b132830ac8a8955d7710b1f552ee3ec98bfb",
-      "size_bytes": 10346,
+      "sha256": "16c02b8bc82209c6b96cc13d4221cb869f5ab2a17f58c8b9055e4c669698bcfa",
+      "size_bytes": 10662,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
@@ -264,8 +274,8 @@
     },
     {
       "path": "tools/check.py",
-      "sha256": "55fb9a3856e119f9e8acad9bea0ffb65f1191b5066ef4954ced56e4f32b9d4b1",
-      "size_bytes": 2782,
+      "sha256": "bbe26de52f26d5b584407007ed295ce491eeac163201e57c436f647d873d804c",
+      "size_bytes": 2818,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
@@ -324,8 +334,8 @@
     },
     {
       "path": "tools/site.py",
-      "sha256": "6bbf670a07181b7d3ab84ab434381a363357f098527d425c69ae3575553bde62",
-      "size_bytes": 27282,
+      "sha256": "52f3fb1f0854d7e739cc0c7868549922be0a2208f3b51024bac42309b5e2b6aa",
+      "size_bytes": 27724,
       "source_artifact": "REVIEWED-PUBLIC-SITE",
       "sanitization_status": "SCAN_PASS",
       "verification_status": "SOURCE_REVIEWED",
